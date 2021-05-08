@@ -6,13 +6,13 @@ using UnityEngine;
 public class BulletsInformation : ScriptableObject
 {
     public float BulletLifeTime => _bulletLifeTime;
-    public float HitLayer => _hitLayer;
 
+    public float BulletDamage => _bulletDamage;
 
     [SerializeField]
     private float _bulletLifeTime = 10.0f;
 
     [SerializeField]
-    private LayerMask _hitLayer;
+    private float _bulletDamage = 10.0f;
 
 }

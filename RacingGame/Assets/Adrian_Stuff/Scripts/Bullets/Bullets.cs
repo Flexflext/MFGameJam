@@ -31,7 +31,7 @@ public class Bullets : MonoBehaviour
     public void Spawn(Vector3 at, Vector3 direction, float speed)
     {
         this.transform.position = at;
-        this.gameObject.SetActive(true);
+        //this.gameObject.SetActive(true);
         _startTime = Time.time;
         _myRB.velocity = direction * speed;
         _active = true;
@@ -49,29 +49,30 @@ public class Bullets : MonoBehaviour
     {
         if(col.tag == "Player")
         {
-            HitPlayer();
+            HitPlayer(col.GetComponent<PlayerHealth>());
             return;
         }
 
         if(col.tag == "Enemy")
         {
-            HitEnemy();
+            HitEnemy(col.GetComponent<EnemyBehaviour>());
             return;
         }
     }
 
-    private void HitPlayer()
+    private void HitPlayer(PlayerHealth player)
     {
-        //TODO:
-        Debug.LogError("Not implented");
+        player.TakeDamage(_info.BulletDamage);
 
         Die();
     }
 
-    private void HitEnemy()
+    private void HitEnemy(EnemyBehaviour Enemy)
     {
         //TODO:
-        Debug.LogError("Not implented");
+        //Debug.LogError("Not implented");
+
+        Enemy.EnemyIsColliding();
 
         Die();
     }
