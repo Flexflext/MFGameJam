@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4564660d1dee754a8b15d1236c56ca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mMaxExplosionTimer: 3
+  mMaxExplosionTimer: 5
   BulletAmount: 10
   _bulletSpeed: 3
   _rounds: 3

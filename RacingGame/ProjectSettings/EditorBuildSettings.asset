@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Felix_Stuff/MainMenu.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: 2c205cb969fb8794aa0a9d963c8e2ce9
   - enabled: 1
     path: Assets/Scenes/Main.unity

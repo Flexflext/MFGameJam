@@ -220,6 +220,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void EnemyIsColliding()
     {
+        ScoreManager.Instance.EnemyDied();
         SpawnManager.Instance.UnsubscribeEnemyFromField(this);
 
         SpawnManager.Instance.CurrentEnemiesOnField--;
@@ -244,6 +245,8 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (collision.collider.CompareTag("EndBorder"))
         {
+
+            ScoreManager.Instance.EnemyDied();
             SpawnManager.Instance.UnsubscribeEnemyFromField(this);
 
 

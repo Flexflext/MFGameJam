@@ -48,8 +48,9 @@ public class InGameUI : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !pauseMenu.activeSelf)
+        if (Input.GetButtonDown("Cancel") && !pauseMenu.activeSelf)
         {
+            Debug.Log("Pause");
             Pause();
         }
 

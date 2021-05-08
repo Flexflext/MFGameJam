@@ -225,7 +225,7 @@ PrefabInstance:
     - target: {fileID: 3696263035284789159, guid: e0b690741c3175148aedb2a9842bc25a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3696263035284789159, guid: e0b690741c3175148aedb2a9842bc25a,
         type: 3}
@@ -723,7 +723,7 @@ PrefabInstance:
     - target: {fileID: 3696263035284789159, guid: e0b690741c3175148aedb2a9842bc25a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3696263035284789159, guid: e0b690741c3175148aedb2a9842bc25a,
         type: 3}
@@ -1464,8 +1464,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 909102973}
-  - {fileID: 2017958780}
   - {fileID: 220465444}
+  - {fileID: 2017958780}
   - {fileID: 1627558504}
   - {fileID: 793427694}
   m_Father: {fileID: 1742209720}
@@ -1532,9 +1532,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 200
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

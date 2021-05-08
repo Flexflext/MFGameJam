@@ -11,7 +11,16 @@ public class PlayerAttackSides : MonoBehaviour
     [SerializeField] private KeyCode rightKick;
     [SerializeField] private float timeBetweenKicks;
 
+    private Animator _anim;
+    private SpriteRenderer _spriteRend;
+
     private bool canKick = true;
+
+    private void Awake()
+    {
+        _anim = GetComponent<Animator>();
+        _spriteRend = GetComponent<SpriteRenderer>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -41,14 +50,18 @@ public class PlayerAttackSides : MonoBehaviour
         {
             case 1:
                 target = targetRight;
+                _spriteRend.flipX = false;
                 break;
             case 2:
                 target = targetleft;
+                _spriteRend.flipX = true;
                 break;
             default:
                 target = targetleft;
+                _spriteRend.flipX = true;
                 break;
         }
+        _anim.SetTrigger("IsAttacing");
 
         Vector3 direction = transform.position + target;
 

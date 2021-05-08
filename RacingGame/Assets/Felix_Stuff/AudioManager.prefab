@@ -48,13 +48,13 @@ MonoBehaviour:
   mixerGroup: {fileID: 24300002, guid: 2a30ca79f2aaefb4cab7702746211576, type: 2}
   sounds:
   - Name: MainMenu
-    Clip: {fileID: 8300000, guid: 42327ef770c97b34295e87a71998fced, type: 3}
+    Clip: {fileID: 8300000, guid: 5452f60504202cd45b7f2391c5cd5e67, type: 3}
     Volume: 1
     Pitch: 1
     Loop: 1
     Source: {fileID: 0}
   - Name: RacingMusic
-    Clip: {fileID: 8300000, guid: f84cfa2df52110441a5595199daaf294, type: 3}
+    Clip: {fileID: 8300000, guid: 2705acafc6b0d654e922ab117b33795a, type: 3}
     Volume: 1
     Pitch: 1
     Loop: 1

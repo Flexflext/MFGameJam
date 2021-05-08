@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -779,6 +779,11 @@ PrefabInstance:
       propertyPath: mPlayerHealth
       value: 
       objectReference: {fileID: 2083418673}
+    - target: {fileID: 5004898846927275825, guid: b875fcfdeeda6a34b9f489b668f8202d,
+        type: 3}
+      propertyPath: mMaxEnemiesOnField
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6499395471878144333, guid: b875fcfdeeda6a34b9f489b668f8202d,
         type: 3}
       propertyPath: m_Name
@@ -1254,7 +1259,7 @@ PrefabInstance:
     - target: {fileID: 2437243379052143656, guid: 598855191dc92b14e85497ddc5c35f0d,
         type: 3}
       propertyPath: kickRange
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2437243379052143657, guid: 598855191dc92b14e85497ddc5c35f0d,
         type: 3}
@@ -1275,6 +1280,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2437243379052143669, guid: 598855191dc92b14e85497ddc5c35f0d,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2437243379052143669, guid: 598855191dc92b14e85497ddc5c35f0d,
+        type: 3}
+      propertyPath: m_FlipY
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2437243379052143671, guid: 598855191dc92b14e85497ddc5c35f0d,
         type: 3}
