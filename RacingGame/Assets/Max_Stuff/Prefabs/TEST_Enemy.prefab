@@ -108,6 +108,7 @@ MonoBehaviour:
   BorderThickness: 3
 --- !u!50 &1938018056262077662
 Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
