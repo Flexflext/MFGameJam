@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof (Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    public bool PlayerIsStunned;
+
     [SerializeField] private float playerSpeed;
 
     private Vector3 moveDir;
@@ -24,7 +26,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleInput();
+        if (!PlayerIsStunned)
+        {
+            HandleInput();
+        }
     }
 
     private void FixedUpdate()
