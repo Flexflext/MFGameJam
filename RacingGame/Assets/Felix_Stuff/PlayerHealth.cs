@@ -63,12 +63,11 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            Debug.Log("Im dead");
+            InGameUI.Instance.OpenDeathMenu();
             stats.CurrentHealth = 0;
         }
 
         stats.CurrentHealth = health;
-
     }
 
     public void StunPlayer()
