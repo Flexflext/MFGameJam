@@ -49,12 +49,15 @@ public class Bullets : MonoBehaviour
     {
         if(col.tag == "Player")
         {
+            Debug.Log("Player");
             HitPlayer(col.GetComponent<PlayerHealth>());
             return;
         }
 
         if(col.tag == "Enemy")
         {
+            Debug.Log("Enemy");
+
             HitEnemy(col.GetComponent<EnemyBehaviour>());
             return;
         }
