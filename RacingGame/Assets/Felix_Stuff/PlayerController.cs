@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = moveDir * playerSpeed * Time.fixedDeltaTime;
+        InGameUI.Instance.ChangeSpeedValue((rb.velocity.normalized).magnitude);
     }
 
     private void HandleInput()
