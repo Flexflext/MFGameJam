@@ -17,8 +17,8 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] sounds;
 
-    //[Header("Arrays for Random Sounds")]
-    //[SerializeField] private AudioClip[] randomBounceSounds;
+    [Header("Arrays for Random Sounds")]
+    [SerializeField] private AudioClip[] randomVoiceLines;
     //[SerializeField] private AudioClip[] randomUpgradeSounds;
 
     private void Awake()
@@ -65,36 +65,36 @@ public class AudioManager : MonoBehaviour
         s.Source.Play();
     }
 
-    ///// <summary>
-    ///// Plays a Random AudioClip in the given Source by Index
-    ///// </summary>
-    ///// <param name="_audioname"></param>
-    ///// <param name="_audioClipArraySound"></param>
-    //public void PlayRandom(string _audioname, string _audioClipArraySound)
-    //{
-    //    Sound s = System.Array.Find(sounds, sound => sound.Name == _audioname);
+    /// <summary>
+    /// Plays a Random AudioClip in the given Source by Index
+    /// </summary>
+    /// <param name="_audioname"></param>
+    /// <param name="_audioClipArraySound"></param>
+    public void PlayRandom(string _audioname, string _audioClipArraySound)
+    {
+        Sound s = System.Array.Find(sounds, sound => sound.Name == _audioname);
 
-    //    AudioClip clip = null;
+        AudioClip clip = null;
 
-    //    //Choses the Array with the Random Sound given by a String
-    //    //if (_audioClipArraySound == "Bounce")
-    //    //{
-    //    //    clip = randomBounceSounds[Random.Range(0, randomBounceSounds.Length)];
-    //    //}
-    //    //else if (_audioClipArraySound == "Upgrade")
-    //    //{
-    //    //    clip = randomUpgradeSounds[Random.Range(0, randomUpgradeSounds.Length)];
-    //    //}
+        //Choses the Array with the Random Sound given by a String
+        if (_audioClipArraySound == "Voice")
+        {
+            clip = randomVoiceLines[Random.Range(0, randomVoiceLines.Length)];
+        }
+        //else if (_audioClipArraySound == "Upgrade")
+        //{
+        //    clip = randomUpgradeSounds[Random.Range(0, randomUpgradeSounds.Length)];
+        //}
 
 
-    //    // Replaces the audioClip in the Souce with the Random one that has been chosen 
-    //    if (clip != null)
-    //    {
-    //        s.Source.clip = clip;
-    //    }
+        // Replaces the audioClip in the Souce with the Random one that has been chosen 
+        if (clip != null)
+        {
+            s.Source.clip = clip;
+        }
 
-    //    s.Source.Play();
-    //}
+        s.Source.Play();
+    }
 
     /// <summary>
     /// Stop the Audio from a Source by String Index
