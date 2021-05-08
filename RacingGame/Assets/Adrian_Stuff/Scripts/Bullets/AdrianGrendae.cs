@@ -61,7 +61,7 @@ public class AdrianGrendae : GrenadeBehaviour
         {
             bullets[_bulletsShot].gameObject.SetActive(true);
             bullets[_bulletsShot].Spawn(this.transform.position, _directions[_bulletsShot % BulletAmount], _bulletSpeed);
-            Debug.Log(_bulletsShot % _rounds);
+            //Debug.Log(_bulletsShot % _rounds);
             _bulletsShot++;
             yield return new WaitForSeconds(_Intervall / BulletAmount);
         }
@@ -79,7 +79,7 @@ public class AdrianGrendae : GrenadeBehaviour
             yield return new WaitForSeconds(_Intervall);
         }
 
-        Debug.Log("Done");
+        //Debug.Log("Done");
         base.Expolde();
     }
     private void ShootCirle(List<Bullets> bullets)
@@ -89,7 +89,7 @@ public class AdrianGrendae : GrenadeBehaviour
             int id = _bulletsShot + (_roundsShot * BulletAmount);
             bullets[id].gameObject.SetActive(true);
             bullets[id].Spawn(this.transform.position, _directions[_bulletsShot], _bulletSpeed);
-            Debug.Log("shoot");
+            //Debug.Log("shoot");
             _bulletsShot++;
         }
     }
