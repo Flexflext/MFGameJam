@@ -308,7 +308,7 @@ MonoBehaviour:
   - {fileID: 6348315061726074394, guid: 470630b4f8417614887c1bae32283fd2, type: 3}
   _tileSize: 17.6
   _roadTileAmount: 10
-  _scrollSpeed: 10
+  _scrollSpeed: 3.5
   _startPos: {fileID: 246456903}
   _endPos: {fileID: 1465069092}
 --- !u!4 &1596450217
