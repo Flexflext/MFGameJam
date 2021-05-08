@@ -44,6 +44,12 @@ public class BackGroundRolle : MonoBehaviour
     private void Update()
     {
         RollMap();
+        AddScore();
+    }
+
+    private void AddScore()
+    {
+        ScoreManager.Instance.AddScore(Time.deltaTime * _scrollSpeed);
     }
 
     private void RollMap()
