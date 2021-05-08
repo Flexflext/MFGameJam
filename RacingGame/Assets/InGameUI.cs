@@ -39,9 +39,11 @@ public class InGameUI : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance.StopAllSounds();
         volumeSlider.value = AudioManager.Instance.MasterVolume;
         maxHealth = playerStats.CurrentHealth;
         HealthSilder.maxValue = maxHealth;
+        AudioManager.Instance.Play("RacingMusic");
     }
 
     private void Update()

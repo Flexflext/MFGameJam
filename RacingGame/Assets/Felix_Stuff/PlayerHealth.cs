@@ -51,6 +51,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float _dmg)
     {
+        AudioManager.Instance.Play("GetHitByCar");
+
         if (isInvincible)
         {
             return;
@@ -73,6 +75,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void StunPlayer()
     {
+        AudioManager.Instance.Play("CrashEnemys");
         controller.PlayerIsStunned = true;
         currentStunTime = maxStunTime;
     }
@@ -87,6 +90,7 @@ public class PlayerHealth : MonoBehaviour
             if (health < maxHealth)
             {
                 health += pickUp.Health;
+                AudioManager.Instance.Play("NewLifeBonus");
 
                 if (health > maxHealth)
                 {

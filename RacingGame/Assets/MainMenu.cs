@@ -13,7 +13,9 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance.StopAllSounds();
         volumeSlider.value = AudioManager.Instance.MasterVolume;
+        AudioManager.Instance.Play("MainMenu");
     }
 
     public void ChangeVolume(float _value)
