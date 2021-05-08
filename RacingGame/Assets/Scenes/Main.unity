@@ -394,6 +394,75 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1001 &966299593
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6499395471878144333, guid: b875fcfdeeda6a34b9f489b668f8202d,
+        type: 3}
+      propertyPath: m_Name
+      value: SpawnManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439617426259358541, guid: b875fcfdeeda6a34b9f489b668f8202d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439617426259358541, guid: b875fcfdeeda6a34b9f489b668f8202d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439617426259358541, guid: b875fcfdeeda6a34b9f489b668f8202d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439617426259358541, guid: b875fcfdeeda6a34b9f489b668f8202d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439617426259358541, guid: b875fcfdeeda6a34b9f489b668f8202d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439617426259358541, guid: b875fcfdeeda6a34b9f489b668f8202d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439617426259358541, guid: b875fcfdeeda6a34b9f489b668f8202d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439617426259358541, guid: b875fcfdeeda6a34b9f489b668f8202d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439617426259358541, guid: b875fcfdeeda6a34b9f489b668f8202d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439617426259358541, guid: b875fcfdeeda6a34b9f489b668f8202d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8439617426259358541, guid: b875fcfdeeda6a34b9f489b668f8202d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b875fcfdeeda6a34b9f489b668f8202d, type: 3}
 --- !u!1001 &1312659244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -401,6 +470,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6704352923708686061, guid: a2ab03ef10c79544b9d6bfe69b7c15df,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6704352923757523511, guid: a2ab03ef10c79544b9d6bfe69b7c15df,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -429,6 +503,21 @@ PrefabInstance:
     - target: {fileID: 6704352923879888800, guid: a2ab03ef10c79544b9d6bfe69b7c15df,
         type: 3}
       propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704352923985428695, guid: a2ab03ef10c79544b9d6bfe69b7c15df,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704352924744507948, guid: a2ab03ef10c79544b9d6bfe69b7c15df,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704352924937987159, guid: a2ab03ef10c79544b9d6bfe69b7c15df,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6704352925082424391, guid: a2ab03ef10c79544b9d6bfe69b7c15df,
