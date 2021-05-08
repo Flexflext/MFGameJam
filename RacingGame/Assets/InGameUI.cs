@@ -24,6 +24,9 @@ public class InGameUI : MonoBehaviour
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private GameObject pauseMenu;
 
+    [SerializeField] private GameObject DeathMenu;
+    [SerializeField] private TMP_Text endScoreText;
+
     private float maxHealth;
 
     private void Awake()
@@ -36,6 +39,7 @@ public class InGameUI : MonoBehaviour
 
     private void Start()
     {
+        volumeSlider.value = AudioManager.Instance.MasterVolume;
         maxHealth = playerStats.CurrentHealth;
         HealthSilder.maxValue = maxHealth;
     }
@@ -115,6 +119,21 @@ public class InGameUI : MonoBehaviour
     public void ChangeSpeedValue(float _speed)
     {
         SpeedSlider.value = _speed;
+    }
+
+    public void OpenDeathMenu()
+    {
+        Time.timeScale = 0;
+        OptionsMenu.SetActive(false);
+        pauseMenu.SetActive(false);
+        endScoreText.text = scoreText.text;
+        DeathMenu.SetActive(true);
+    }
+
+    public void ReloadScene()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(1);
     }
 
 }
