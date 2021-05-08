@@ -55,7 +55,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private Vector3 PlayerPos;
 
-    GrenadeBehaviour mGrenade;
+    GameObject mGrenade;
 
     Animator Anim;
     private float AttackAnimTimer;
@@ -83,6 +83,8 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Update()
     {
+        Anim.SetBool("IsMoving", true);
+
         if (Rb.velocity == Vector2.zero)
         {
             IsGettingHit = false;
@@ -130,8 +132,8 @@ public class EnemyBehaviour : MonoBehaviour
 
             mEnemyAttackTimer = Random.Range(mMaxEnemyAttackTimer / 2, mMaxEnemyAttackTimer);
             mThrowTimer = Random.Range(mMaxThrowTimer / 2, mMaxThrowTimer);
-
-            //AttackAnimTimer = Anim.GetCurrentAnimatorClipInfo(0).Length;
+            Anim.SetTrigger("IsAttacking");
+            AttackAnimTimer = Anim.GetCurrentAnimatorClipInfo(0).Length;
             if (AttackAnimTimer <= 0)
             {
                 mIsAttackingPlayer = false;
@@ -208,35 +210,11 @@ public class EnemyBehaviour : MonoBehaviour
 
         mGrenade.transform.position = Vector2.MoveTowards(mGrenade.transform.position, GrenadeRndPos, mSpeed * Time.deltaTime);
 
-        if (mGrenade.transform.position == (Vector3)GrenadeRndPos || !mGrenade.isActiveAndEnabled)
+        if (mGrenade.transform.position == (Vector3)GrenadeRndPos || !mGrenade.activeSelf)
         {
             mGrenadeSpawned = false;
             mThrowTimer = Random.Range(mMaxThrowTimer / 2, mMaxThrowTimer);
-            //mGrenadeHit = false;
         }
-
-        //if (mThrowAmount >= mMaxThrowAmount)
-        //{
-        //    for (int i = 0; i < mThrowAmount; i++)
-        //    {
-
-        //        grenade = SpawnManager.Instance.GrenadesToSpawn[i];
-
-        //        grenade.transform.position = Vector2.MoveTowards(transform.position, rndPos, Speed * Time.deltaTime);
-        //        mThrowAmount--;
-
-
-
-        //        if (grenade.transform.position == rndPos)
-        //        {
-        //            mGrenadeHit = true;
-        //            mThrowTimer = mMaxThrowTimer;
-        //            mThrowAmount = mMaxThrowAmount;
-        //        }
-
-        //    }
-        //}
-
     }
 
 
