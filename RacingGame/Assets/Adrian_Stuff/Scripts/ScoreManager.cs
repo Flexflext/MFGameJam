@@ -29,11 +29,14 @@ public class ScoreManager : MonoBehaviour
     public void EnemyDied()
     {
         _score += _bonusForEnemyKilled;
+        InGameUI.Instance.ShowKillUIAnimation(_bonusForEnemyKilled);
+        InGameUI.Instance.ChangeScore((int)_score);
     }
 
     public void AddScore(float meters)
     {
         _score += meters * _amountPerMeter;
+        InGameUI.Instance.ChangeScore((int)_score);
     }
 
 }
