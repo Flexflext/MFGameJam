@@ -23,10 +23,6 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<PlayerController>();
-    }
-
-    private void Start()
-    {
         maxHealth = health;
         stats.MaxHealth = health;
         stats.CurrentHealth = health;
