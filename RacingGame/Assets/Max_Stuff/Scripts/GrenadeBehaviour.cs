@@ -34,7 +34,7 @@ public class GrenadeBehaviour : MonoBehaviour
 
     protected virtual void Expolde()
     {
-        SpawnManager.Instance.UnsubscribeGrenadeFromField(this);
+        SpawnManager.Instance.UnsubscribeGrenadeFromField(this.gameObject);
 
     }
 }

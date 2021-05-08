@@ -6,7 +6,7 @@ public class SpawnManager : MonoBehaviour
 {
     public static SpawnManager Instance;
 
-    public List<GrenadeBehaviour> GrenadesToSpawn => mGrenadesToSpawn;
+    public List<GameObject> GrenadesToSpawn => mGrenadesToSpawn;
     public PlayerHealth PlayerHealth => mPlayerHealth;
     public int CurrentEnemiesOnField { get => mCurrentEnemiesOnField; set => mCurrentEnemiesOnField = value; }
     public GameObject Board => mBoard;
@@ -38,14 +38,16 @@ public class SpawnManager : MonoBehaviour
     private List<EnemyBehaviour> mEnemiesToSpawn;
     private List<EnemyBehaviour> mEnemiesOnTheField;
 
-    private List<GrenadeBehaviour> mGrenadesToSpawn;
-    private List<GrenadeBehaviour> mGrenadesOnTheField;
+    private List<GameObject> mGrenadesToSpawn;
+    private List<GameObject> mGrenadesOnTheField;
 
     [SerializeField]
     private GameObject mBoard;
 
     [SerializeField]
-    private GrenadeBehaviour mGrenadePrefab;
+    private GameObject mNormalGrenadePrefab;
+    [SerializeField]
+    private GameObject mSpiralGrenadePrefab;
     [SerializeField]
     private float mGrenadeAmount;
 
@@ -60,12 +62,22 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
+        if (mPlayer != null)
+        {
+            mPlayer = GameObject.FindGameObjectWithTag("Player");
+        }
+        if (mPlayerHealth != null)
+        {
+            mPlayerHealth = FindObjectOfType<PlayerHealth>();
+        }
+
+
         mPlayerHealth = FindObjectOfType<PlayerHealth>();
 
         mEnemiesToSpawn = new List<EnemyBehaviour>();
         mEnemiesOnTheField = new List<EnemyBehaviour>();
-        mGrenadesToSpawn = new List<GrenadeBehaviour>();
-        mGrenadesOnTheField = new List<GrenadeBehaviour>();
+        mGrenadesToSpawn = new List<GameObject>();
+        mGrenadesOnTheField = new List<GameObject>();
 
         mSpawnTimer = mMaxSpawnTimer;
 
@@ -81,12 +93,27 @@ public class SpawnManager : MonoBehaviour
 
         for (int i = 0; i < mGrenadeAmount; i++)
         {
-            GrenadeBehaviour grenade = Instantiate(mGrenadePrefab, transform.position, transform.rotation);
-            grenade.transform.position = transform.position;
-            grenade.transform.SetParent(this.transform);
-            grenade.gameObject.SetActive(false);
+            int rndNade = Random.Range(0, 2);
 
-            UnsubscribeGrenadeFromField(grenade);
+            if (rndNade == 0)
+            {
+                GameObject grenade = Instantiate(mNormalGrenadePrefab, transform.position, transform.rotation);
+                grenade.transform.position = transform.position;
+                grenade.transform.SetParent(this.transform);
+                grenade.gameObject.SetActive(false);
+
+                UnsubscribeGrenadeFromField(grenade);
+            }
+            else
+            {
+
+                GameObject grenade = Instantiate(mSpiralGrenadePrefab, transform.position, transform.rotation);
+                grenade.transform.position = transform.position;
+                grenade.transform.SetParent(this.transform);
+                grenade.gameObject.SetActive(false);
+
+                UnsubscribeGrenadeFromField(grenade);
+            }
         }
     }
 
@@ -148,7 +175,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    public void SubscribeGrenadeToField(GrenadeBehaviour _grenadeToAdd)
+    public void SubscribeGrenadeToField(GameObject _grenadeToAdd)
     {
         if (!mGrenadesOnTheField.Contains(_grenadeToAdd))
         {
@@ -161,7 +188,7 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    public void UnsubscribeGrenadeFromField(GrenadeBehaviour _grenadeToRemove)
+    public void UnsubscribeGrenadeFromField(GameObject _grenadeToRemove)
     {
         if (mGrenadesOnTheField.Contains(_grenadeToRemove))
         {
