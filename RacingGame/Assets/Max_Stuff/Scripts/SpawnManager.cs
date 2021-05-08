@@ -14,7 +14,9 @@ public class SpawnManager : MonoBehaviour
     public GameObject Player => mPlayer;
 
     [SerializeField]
-    private EnemyBehaviour mEnemyPrefab;
+    private EnemyBehaviour mFirstEnemyPrefab;
+    [SerializeField]
+    private EnemyBehaviour mSecondEnemyPrefab;
 
     [SerializeField]
     private GameObject mSpawnLine;
@@ -83,12 +85,28 @@ public class SpawnManager : MonoBehaviour
 
         for (int i = 0; i < mEnemiesToInstantiate; i++)
         {
-            EnemyBehaviour enemy = Instantiate(mEnemyPrefab, transform.position, transform.rotation);
-            enemy.transform.position = transform.position;
-            enemy.transform.SetParent(this.transform);
-            enemy.gameObject.SetActive(false);
+            int rndEnemy = Random.Range(0, 2);
 
-            UnsubscribeEnemyFromField(enemy);
+            if (rndEnemy == 0)
+            {
+                EnemyBehaviour enemy = Instantiate(mSecondEnemyPrefab, transform.position, transform.rotation);
+                enemy.transform.position = transform.position;
+                enemy.transform.SetParent(this.transform);
+                enemy.gameObject.SetActive(false);
+
+                UnsubscribeEnemyFromField(enemy);
+            }
+            else
+            {
+                EnemyBehaviour enemy = Instantiate(mFirstEnemyPrefab, transform.position, transform.rotation);
+                enemy.transform.position = transform.position;
+                enemy.transform.SetParent(this.transform);
+                enemy.gameObject.SetActive(false);
+
+                UnsubscribeEnemyFromField(enemy);
+            }
+
+           
         }
 
         for (int i = 0; i < mGrenadeAmount; i++)
@@ -119,6 +137,9 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
+
+
+
         if (mCurrentEnemiesOnField < mMaxEnemiesOnField)
         {
             for (int i = 0; i < mMaxEnemiesOnField; i++)

@@ -43,7 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e1ad64a2faf8f41bb2b34e94ff0117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mEnemyPrefab: {fileID: 5514578760870312439, guid: 9e8ab0795c25346458167874467c1a0b,
+  mFirstEnemyPrefab: {fileID: 5514578760870312439, guid: 9e8ab0795c25346458167874467c1a0b,
+    type: 3}
+  mSecondEnemyPrefab: {fileID: 7973018145574513593, guid: cac336d90f4fda54b8582dcae8a7adab,
     type: 3}
   mSpawnLine: {fileID: 5548659277536432172, guid: 1c3b78804cbbce74daa4910f85eb84a4,
     type: 3}

@@ -83,6 +83,11 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Anim.SetTrigger("IsAttackingRight");
+        }
+
         Anim.SetBool("IsMoving", true);
 
         if (Rb.velocity == Vector2.zero)
@@ -132,7 +137,14 @@ public class EnemyBehaviour : MonoBehaviour
 
             mEnemyAttackTimer = Random.Range(mMaxEnemyAttackTimer / 2, mMaxEnemyAttackTimer);
             mThrowTimer = Random.Range(mMaxThrowTimer / 2, mMaxThrowTimer);
-            Anim.SetTrigger("IsAttacking");
+            if (mPlayer.transform.position.x > this.transform.position.x)
+            {
+                Anim.SetTrigger("IsAttackingRight");
+            }
+            if (mPlayer.transform.position.x < this.transform.position.x)
+            {
+                Anim.SetTrigger("IsAttackingLeft");
+            }
             AttackAnimTimer = Anim.GetCurrentAnimatorClipInfo(0).Length;
             if (AttackAnimTimer <= 0)
             {
@@ -243,7 +255,8 @@ public class EnemyBehaviour : MonoBehaviour
             mPlayerHealth.TakeDamage(mDamage);
         }
 
-        if (collision.collider.CompareTag("EndBorder"))
+        if (collision.collider.CompareTag("End" +
+            "Border"))
         {
 
             ScoreManager.Instance.EnemyDied();
