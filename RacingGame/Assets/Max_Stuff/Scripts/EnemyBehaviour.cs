@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-
     [SerializeField]
     private float mMaxThrowTimer;
     private float mThrowTimer;
@@ -18,109 +17,226 @@ public class EnemyBehaviour : MonoBehaviour
     private float mRndMovePosTimer;
 
     [SerializeField]
-    public float Speed;
+    private float mSpeed;
+    [SerializeField]
+    private float mDamage;
+
 
     [SerializeField]
+    private int mMaxThrowAmount;
     private int mThrowAmount;
 
-    private Vector2 mBoardSize;
+
+    private GameObject mBoardSize;
 
     [SerializeField]
     private GameObject mPlayer;
+    private PlayerHealth mPlayerHealth;
 
     [SerializeField]
     private float mAttackRange;
 
-    private Vector3 RndPos;
+    private Vector3 mRndPos;
 
-    private bool RndPosFound = false;
+    private bool mRndPosFound = false;
+    private bool mIsAttackingPlayer = false;
+    private bool mGrenadeHit = false;
+    private bool mGrenadeSpawned = false;
+    private bool mFoundPlayer;
+
+    private bool IsGettingHit = false;
+
+    private bool IsHittingPlayer = false;
+
+    [SerializeField]
+    private float BorderThickness;
+
+    private Vector2 GrenadeRndPos;
+
+    private Vector3 PlayerPos;
+
+    GrenadeBehaviour mGrenade;
+
+    Animator Anim;
+    private float AttackAnimTimer;
+
+    Rigidbody2D Rb;
 
     private void Start()
     {
-        mBoardSize = SpawnManager.Instance.BoardSize;
+        Rb = GetComponent<Rigidbody2D>();
+
+        Anim = GetComponent<Animator>();
+        mPlayerHealth = SpawnManager.Instance.PlayerHealth;
+
+        mThrowAmount = mMaxThrowAmount;
+
+        mBoardSize = SpawnManager.Instance.Board;
 
         mPlayer = SpawnManager.Instance.Player;
 
-        mEnemyAttackTimer = mMaxEnemyAttackTimer;
-        mThrowTimer = mMaxThrowTimer;
+       
+
+        mEnemyAttackTimer = Random.Range(mMaxEnemyAttackTimer / 2, mMaxEnemyAttackTimer);
+        mThrowTimer = Random.Range(mMaxThrowTimer / 2, mMaxThrowTimer);
     }
 
     private void Update()
     {
-        if (mRndMovePosTimer <= 0 && this.isActiveAndEnabled && !RndPosFound)
+        if (Rb.velocity == Vector2.zero)
+        {
+            IsGettingHit = false;
+        }
+        if (Rb.velocity.x > 0)
+        {
+
+            IsGettingHit = true;
+        }
+
+        if (mRndMovePosTimer <= 0 && this.isActiveAndEnabled && !mRndPosFound && !IsHittingPlayer && !IsGettingHit)
         {
             RndMovePosition();
         }
         else
             mRndMovePosTimer -= Time.deltaTime;
 
-        if (mEnemyAttackTimer <= 0 && transform.position == RndPos)
+        if (mEnemyAttackTimer <= 0 && !IsHittingPlayer && !IsGettingHit)
         {
             MoveToPlayer();
+            mIsAttackingPlayer = true;
         }
         else
+        { 
+            mFoundPlayer = false;
             mEnemyAttackTimer -= Time.deltaTime;
+        }
+            
 
-        if (mThrowTimer <= 0)
+        if (mThrowTimer <= 0 && !IsHittingPlayer)
         {
-            EnemyThrowsGrenade();
-            mThrowTimer = mMaxThrowTimer;
+            EnemyThrowsGrenade();    
         }
         else
             mThrowTimer -= Time.deltaTime;
 
-
-        if (Vector3.Magnitude(mPlayer.transform.position - this.transform.position) <= mAttackRange)
+        if (transform.position != mRndPos && !mIsAttackingPlayer && !IsGettingHit)
         {
-            // TODO: Call AttackPlayer from Felix
+            transform.position = Vector2.MoveTowards(transform.position, mRndPos, mSpeed * Time.deltaTime);
         }
+
+        if (Vector3.Magnitude(mPlayer.transform.position - this.transform.position) <= mAttackRange && !IsGettingHit)
+        {
+            IsHittingPlayer = true;
+
+            mEnemyAttackTimer = Random.Range(mMaxEnemyAttackTimer / 2, mMaxEnemyAttackTimer);
+            mThrowTimer = Random.Range(mMaxThrowTimer / 2, mMaxThrowTimer);
+
+            //AttackAnimTimer = Anim.GetCurrentAnimatorClipInfo(0).Length;
+            if (AttackAnimTimer <= 0)
+            {
+                mIsAttackingPlayer = false;
+                mRndMovePosTimer -= mRndMovePosTimer;
+                IsHittingPlayer = false;
+                mRndPosFound = false;
+            }
+            else
+                AttackAnimTimer -= Time.deltaTime;
+
+            mPlayerHealth.StunPlayer();
+            mPlayerHealth.TakeDamage(mDamage);
+        }
+        else
+            IsHittingPlayer = false;
+
+
     }
 
     private void RndMovePosition()
     {
-        if (!RndPosFound)
+        if (!mRndPosFound)
         {
-            float rndPosX = Random.Range(mBoardSize.x - mBoardSize.x / 2, mBoardSize.x);
-            float rndPosY = Random.Range(mBoardSize.y - mBoardSize.y / 2, mBoardSize.y);
-            RndPos = new Vector2(rndPosX, rndPosY);
-            RndPosFound = true;
+            float rndPosX = Random.Range(mBoardSize.transform.position.x - mBoardSize.transform.localScale.x / 2, mBoardSize.transform.position.x + mBoardSize.transform.localScale.x / 2);
+            float rndPosY = Random.Range(mBoardSize.transform.position.y - mBoardSize.transform.localScale.y / 2 + BorderThickness, mBoardSize.transform.position.y + mBoardSize.transform.localScale.y / 2 - BorderThickness);
+            Debug.Log("DDDDD");
+            mRndPos = new Vector2(rndPosX, rndPosY);
+            mRndPosFound = true;
         }
         
-
-        transform.position = Vector2.MoveTowards(transform.position, RndPos, Speed * Time.deltaTime);
-
-        if (transform.position == RndPos)
+        if (transform.position == mRndPos)
         {
-            RndPosFound = false;
+            mRndPosFound = false;
             mRndMovePosTimer = mMaxRndMovePosTimer;
         }
     }
 
     private void MoveToPlayer()
     {
-
-        Vector2 playerPos = mPlayer.transform.position;
-        transform.position = Vector2.MoveTowards(transform.position, playerPos, Speed * Time.deltaTime);
-
-        if (transform.position == (Vector3)playerPos)
+        if (!mFoundPlayer)
         {
-            mEnemyAttackTimer = mMaxEnemyAttackTimer;
+            PlayerPos = mPlayer.transform.position;
+            mFoundPlayer = true;
+        }
+
+
+        mRndMovePosTimer = mMaxRndMovePosTimer;
+        this.transform.position = Vector2.MoveTowards(this.transform.position, PlayerPos, mSpeed * Time.deltaTime);
+
+        if (transform.position == PlayerPos)
+        {
+            mEnemyAttackTimer = Random.Range(mMaxEnemyAttackTimer / 2, mMaxEnemyAttackTimer);
+            mIsAttackingPlayer = false;
+            mFoundPlayer = false;
         }
     }
 
     private void EnemyThrowsGrenade()
     {
-        for (int i = 0; i < mThrowAmount; i++)
+        if (!mGrenadeSpawned)
         {
-            float rndPosX = Random.Range(mBoardSize.x - mBoardSize.x, mBoardSize.x);
-            float rndPosY = Random.Range(mBoardSize.y - mBoardSize.y, mBoardSize.y);
-            Vector2 rndPos = new Vector2(rndPosX, rndPosY);
+            mGrenadeSpawned = true;
+            int rndG = Random.Range(SpawnManager.Instance.GrenadesToSpawn.Count - SpawnManager.Instance.GrenadesToSpawn.Count, SpawnManager.Instance.GrenadesToSpawn.Count);
 
-            GrenadeBehaviour grenade = SpawnManager.Instance.GrenadesToSpawn[i];
+            float rndPosX = Random.Range(mBoardSize.transform.position.x - mBoardSize.transform.localScale.x / 2, mBoardSize.transform.position.x + mBoardSize.transform.localScale.x / 2);
+            float rndPosY = Random.Range(mBoardSize.transform.position.y - mBoardSize.transform.localScale.y / 2, mBoardSize.transform.position.y + mBoardSize.transform.localScale.y / 2);
+            GrenadeRndPos = new Vector2(rndPosX, rndPosY);
+            Debug.Log(GrenadeRndPos);
+            mGrenade = SpawnManager.Instance.GrenadesToSpawn[rndG];
 
-            grenade.transform.position = Vector2.MoveTowards(transform.position, rndPos, Speed * Time.deltaTime);
-            SpawnManager.Instance.SubscribeGrenadeToField(grenade);
+            mGrenade.transform.position = transform.position;
+            SpawnManager.Instance.SubscribeGrenadeToField(mGrenade);
         }
+
+        mGrenade.transform.position = Vector2.MoveTowards(mGrenade.transform.position, GrenadeRndPos, mSpeed * Time.deltaTime);
+
+        if (mGrenade.transform.position == (Vector3)GrenadeRndPos || !mGrenade.isActiveAndEnabled)
+        {
+            mGrenadeSpawned = false;
+            mThrowTimer = Random.Range(mMaxThrowTimer / 2, mMaxThrowTimer);
+            //mGrenadeHit = false;
+        }
+
+        //if (mThrowAmount >= mMaxThrowAmount)
+        //{
+        //    for (int i = 0; i < mThrowAmount; i++)
+        //    {
+
+        //        grenade = SpawnManager.Instance.GrenadesToSpawn[i];
+
+        //        grenade.transform.position = Vector2.MoveTowards(transform.position, rndPos, Speed * Time.deltaTime);
+        //        mThrowAmount--;
+
+
+
+        //        if (grenade.transform.position == rndPos)
+        //        {
+        //            mGrenadeHit = true;
+        //            mThrowTimer = mMaxThrowTimer;
+        //            mThrowAmount = mMaxThrowAmount;
+        //        }
+
+        //    }
+        //}
+
     }
 
 
@@ -131,10 +247,30 @@ public class EnemyBehaviour : MonoBehaviour
         SpawnManager.Instance.CurrentEnemiesOnField--;
     }
 
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(RndPos, 0.5f);
+        Gizmos.DrawWireSphere(mRndPos, 0.5f);
     }
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            mEnemyAttackTimer = Random.Range(mMaxEnemyAttackTimer / 2, mMaxEnemyAttackTimer);
+            mPlayerHealth.StunPlayer();
+            mPlayerHealth.TakeDamage(mDamage);
+        }
+
+        if (collision.collider.CompareTag("Border"))
+        {
+            SpawnManager.Instance.UnsubscribeEnemyFromField(this);
+
+
+
+            SpawnManager.Instance.CurrentEnemiesOnField--;
+        }
+    }
 }

@@ -5,19 +5,19 @@ using UnityEngine;
 public class GrenadeBehaviour : MonoBehaviour
 {
     [SerializeField]
-    private float mMaxExplosionTimer;
-    private float mExplosionTimer;
+    protected float mMaxExplosionTimer;
+    protected float mExplosionTimer;
 
     [SerializeField]
-    private int BulletAmount;
+    protected int BulletAmount;
 
 
-    private void Start()
+    protected virtual void Start()
     {
         mExplosionTimer = mMaxExplosionTimer;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (gameObject.activeSelf)
         {
@@ -32,7 +32,7 @@ public class GrenadeBehaviour : MonoBehaviour
         }
     }
 
-    public void Expolde()
+    protected virtual void Expolde()
     {
         SpawnManager.Instance.UnsubscribeGrenadeFromField(this);
 
