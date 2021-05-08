@@ -242,7 +242,7 @@ public class EnemyBehaviour : MonoBehaviour
             mPlayerHealth.TakeDamage(mDamage);
         }
 
-        if (collision.collider.CompareTag("Border"))
+        if (collision.collider.CompareTag("EndBorder"))
         {
             SpawnManager.Instance.UnsubscribeEnemyFromField(this);
 
