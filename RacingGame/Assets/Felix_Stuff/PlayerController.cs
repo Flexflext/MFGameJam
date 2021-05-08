@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float playerSpeed;
 
+    private Vector3 moveDir;
     private Rigidbody2D rb;
 
     private void Awake()
@@ -23,16 +24,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        HandleInput();
     }
 
     private void FixedUpdate()
     {
-        
+        rb.velocity = moveDir * playerSpeed * Time.fixedDeltaTime;
     }
 
     private void HandleInput()
     {
+        float xAxis = Input.GetAxis("Horizontal");
+        float yAxis = Input.GetAxis("Vertical");
 
+        moveDir = new Vector2(xAxis, yAxis).normalized;
     }
+
+
 }
