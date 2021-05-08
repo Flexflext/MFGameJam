@@ -47,8 +47,38 @@ MonoBehaviour:
   MasterMixer: {fileID: 24100000, guid: 2a30ca79f2aaefb4cab7702746211576, type: 2}
   mixerGroup: {fileID: 24300002, guid: 2a30ca79f2aaefb4cab7702746211576, type: 2}
   sounds:
-  - Name: 
-    Clip: {fileID: 0}
+  - Name: MainMenu
+    Clip: {fileID: 8300000, guid: 42327ef770c97b34295e87a71998fced, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 1
+    Source: {fileID: 0}
+  - Name: RacingMusic
+    Clip: {fileID: 8300000, guid: f84cfa2df52110441a5595199daaf294, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 1
+    Source: {fileID: 0}
+  - Name: CrashEnemys
+    Clip: {fileID: 8300000, guid: 57b14970ca5e1d04684d509871d78a5c, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+    Source: {fileID: 0}
+  - Name: NewLifeBonus
+    Clip: {fileID: 8300000, guid: e8b9f3eaa2a2495499ba48fc80939761, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+    Source: {fileID: 0}
+  - Name: GetHitByCar
+    Clip: {fileID: 8300000, guid: 6103520b8bbd831449a01a361c171112, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+    Source: {fileID: 0}
+  - Name: Acceleration
+    Clip: {fileID: 8300000, guid: 81bf6ddcf9db60049ab7b98dfe8df113, type: 3}
     Volume: 1
     Pitch: 1
     Loop: 0
