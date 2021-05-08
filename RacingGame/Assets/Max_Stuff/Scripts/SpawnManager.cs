@@ -7,8 +7,9 @@ public class SpawnManager : MonoBehaviour
     public static SpawnManager Instance;
 
     public List<GrenadeBehaviour> GrenadesToSpawn => mGrenadesToSpawn;
+    public PlayerHealth PlayerHealth => mPlayerHealth;
     public int CurrentEnemiesOnField { get => mCurrentEnemiesOnField; set => mCurrentEnemiesOnField = value; }
-    public Vector2 BoardSize => mBoardSize;
+    public GameObject Board => mBoard;
 
     public GameObject Player => mPlayer;
 
@@ -31,6 +32,8 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField]
     private GameObject mPlayer;
+    [SerializeField]
+    private PlayerHealth mPlayerHealth;
 
     private List<EnemyBehaviour> mEnemiesToSpawn;
     private List<EnemyBehaviour> mEnemiesOnTheField;
@@ -38,11 +41,8 @@ public class SpawnManager : MonoBehaviour
     private List<GrenadeBehaviour> mGrenadesToSpawn;
     private List<GrenadeBehaviour> mGrenadesOnTheField;
 
-
     [SerializeField]
-    private Vector2 mBoardSize;
-    [SerializeField]
-    private SpriteRenderer mBoard;
+    private GameObject mBoard;
 
     [SerializeField]
     private GrenadeBehaviour mGrenadePrefab;
@@ -60,6 +60,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
+        mPlayerHealth = FindObjectOfType<PlayerHealth>();
 
         mEnemiesToSpawn = new List<EnemyBehaviour>();
         mEnemiesOnTheField = new List<EnemyBehaviour>();
@@ -91,7 +92,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
-        if (mCurrentEnemiesOnField <= mMaxEnemiesOnField)
+        if (mCurrentEnemiesOnField < mMaxEnemiesOnField)
         {
             for (int i = 0; i < mMaxEnemiesOnField; i++)
             {
@@ -106,14 +107,14 @@ public class SpawnManager : MonoBehaviour
                     mSpawnTimer -= Time.deltaTime;
                 }
             }
-        }  
+        }
+
     }
 
     private void SpawnEnemy(EnemyBehaviour _enemy)
     {
         float rndPosX = Random.Range(mSpawnLine.transform.position.x - mSpawnLine.transform.localScale.x / 2, mSpawnLine.transform.position.x + mSpawnLine.transform.localScale.x / 2);
         Vector2 rndPos = new Vector2(rndPosX, mSpawnLine.transform.position.y);
-        Debug.Log(rndPos);
 
         _enemy.transform.position = rndPos;
 
