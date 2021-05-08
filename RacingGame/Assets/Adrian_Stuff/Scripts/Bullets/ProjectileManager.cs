@@ -23,10 +23,12 @@ public class ProjectileManager : MonoBehaviour
         }
 
         Instance = this;
+
+        StartSetup();
     }
 
 
-    private void StatSetup() 
+    private void StartSetup() 
     {
         for(int i = 0; i < _startBulletAmount; i++)
         {
