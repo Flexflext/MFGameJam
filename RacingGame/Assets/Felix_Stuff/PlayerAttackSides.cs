@@ -28,13 +28,13 @@ public class PlayerAttackSides : MonoBehaviour
         if (Input.GetKeyDown(leftKick) && canKick)
         {
             Kick(2);
-            Debug.Log("KickLeft"); 
+            //Debug.Log("KickLeft"); 
             StartCoroutine(TimeBetweenKicks());
         }
         if (Input.GetKeyDown(rightKick) && canKick)
         {
             Kick(1);
-            Debug.Log("KickRight");
+            //Debug.Log("KickRight");
             StartCoroutine(TimeBetweenKicks());
         }
     }
@@ -73,7 +73,7 @@ public class PlayerAttackSides : MonoBehaviour
 
             if (hitInfo.collider.CompareTag("Enemy"))
             {
-                Debug.Log("HuHu");
+                //Debug.Log("HuHu");
                 Rigidbody2D rb = hitInfo.collider.GetComponent<Rigidbody2D>();
                 rb.AddForce(target * kickStrenght);
             }

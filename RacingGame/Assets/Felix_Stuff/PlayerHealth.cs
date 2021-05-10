@@ -19,6 +19,8 @@ public class PlayerHealth : MonoBehaviour
     private bool isInvincible;
 
     private PlayerController controller;
+    [SerializeField]
+    private ParticleSystem[] _stunParticles;
 
     private void Awake()
     {
@@ -74,9 +76,13 @@ public class PlayerHealth : MonoBehaviour
 
     public void StunPlayer()
     {
-        AudioManager.Instance.Play("CrashEnemys");
+        AudioManager.Instance.Play("GetHitByCar");
         controller.PlayerIsStunned = true;
         currentStunTime = maxStunTime;
+        foreach(ParticleSystem ps in _stunParticles)
+        {
+            ps.Play();
+        }
     }
 
 

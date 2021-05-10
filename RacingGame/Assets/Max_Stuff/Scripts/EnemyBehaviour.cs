@@ -171,7 +171,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             float rndPosX = Random.Range(mBoardSize.transform.position.x - mBoardSize.transform.localScale.x / 2, mBoardSize.transform.position.x + mBoardSize.transform.localScale.x / 2);
             float rndPosY = Random.Range(mBoardSize.transform.position.y - mBoardSize.transform.localScale.y / 2 + BorderThickness, mBoardSize.transform.position.y + mBoardSize.transform.localScale.y / 2 - BorderThickness);
-            Debug.Log("DDDDD");
+            //Debug.Log("DDDDD");
             mRndPos = new Vector2(rndPosX, rndPosY);
             mRndPosFound = true;
         }
@@ -213,7 +213,7 @@ public class EnemyBehaviour : MonoBehaviour
             float rndPosX = Random.Range(mBoardSize.transform.position.x - mBoardSize.transform.localScale.x / 2, mBoardSize.transform.position.x + mBoardSize.transform.localScale.x / 2);
             float rndPosY = Random.Range(mBoardSize.transform.position.y - mBoardSize.transform.localScale.y / 2, mBoardSize.transform.position.y + mBoardSize.transform.localScale.y / 2);
             GrenadeRndPos = new Vector2(rndPosX, rndPosY);
-            Debug.Log(GrenadeRndPos);
+            //Debug.Log(GrenadeRndPos);
             mGrenade = SpawnManager.Instance.GrenadesToSpawn[rndG];
 
             mGrenade.transform.position = transform.position;
@@ -232,6 +232,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void EnemyIsColliding()
     {
+        AudioManager.Instance.Play("CrashEnemys");
         ScoreManager.Instance.EnemyDied();
         SpawnManager.Instance.UnsubscribeEnemyFromField(this);
 
@@ -258,7 +259,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (collision.collider.CompareTag("End" +
             "Border"))
         {
-
+            AudioManager.Instance.Play("CrashEnemys");
             ScoreManager.Instance.EnemyDied();
             SpawnManager.Instance.UnsubscribeEnemyFromField(this);
 

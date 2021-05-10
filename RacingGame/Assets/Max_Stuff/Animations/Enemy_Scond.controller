@@ -45,7 +45,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e383f08cfd6be0f4dbc1912650c49ef4, type: 2}
+  m_Motion: {fileID: 7400000, guid: fb779b2b4e63d4048b2c72566f75f8b9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -57,7 +57,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Enemy_First
+  m_Name: Enemy_Scond
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: IsMoving
@@ -111,7 +111,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 58ade0e4eb60fa748a62143c90fb4906, type: 2}
+  m_Motion: {fileID: 7400000, guid: b0bb9922553ff4e4a9e2933765c02925, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -186,7 +186,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e246b0ad7fac2d04eaea1fa255198fd2, type: 2}
+  m_Motion: {fileID: 7400000, guid: e729bea7576dac94ea11cb974254fc9b, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

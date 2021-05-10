@@ -48,13 +48,12 @@ public class InGameUI : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Cancel") && !pauseMenu.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Escape) && !pauseMenu.activeSelf)
         {
-            Debug.Log("Pause");
             Pause();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && pauseMenu.activeSelf && !OptionsMenu.activeSelf)
+        else if (Input.GetKeyDown(KeyCode.Escape) && pauseMenu.activeSelf && !OptionsMenu.activeSelf)
         {
             Resume();
         }
@@ -92,8 +91,9 @@ public class InGameUI : MonoBehaviour
 
     public void Pause()
     {
-        Time.timeScale = 0;
         pauseMenu.SetActive(true);
+        Time.timeScale = 0;
+        Debug.Log("Pause");
     }
 
     public void Resume()
