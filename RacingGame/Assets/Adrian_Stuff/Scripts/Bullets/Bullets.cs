@@ -73,8 +73,7 @@ public class Bullets : MonoBehaviour
     private void HitEnemy(EnemyBehaviour Enemy)
     {
         //TODO:
-        //Debug.LogError("Not implented");
-        ScoreManager.Instance.EnemyDied();       
+        //Debug.LogError("Not implented");     
         Enemy.EnemyIsColliding();
 
         Die();
